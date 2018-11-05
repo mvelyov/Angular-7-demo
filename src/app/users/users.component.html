@@ -1,3 +1,18 @@
-<p>
-  users works!
-</p>
+<div class="container">
+  <h3> GitHub users</h3>
+  <br>
+  <div class="row">
+    <div *ngFor="let user of users | paginate: {itemsPerPage: 6, currentPage: p }" class="card border-light mb-3 col-sm-4">
+      <div class="card-body">
+        <img class="card-img-top" [src]="user.avatar_url" alt="avatar">
+        <h5 class="card-title"> User: {{ user.login }}</h5>
+        <a class="btn btn-primary" (click)="onGetDetails(user.login)">View Details</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8 offset-sm-4">
+      <pagination-controls (pageChange)="p = $event" responsive="true" autoHide="true"></pagination-controls>
+    </div>
+  </div>
+</div>

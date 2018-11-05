@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { ReposService } from './../core/repos/repos.service';
 
 @Component({
   selector: 'app-repos',
   templateUrl: './repos.component.html',
-  styleUrls: ['./repos.component.css']
+  styleUrls: ['./repos.component.css'],
 })
 export class ReposComponent implements OnInit {
+  public repos;
 
-  constructor() { }
+  constructor(private reposService: ReposService) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
+    this.reposService.getAllRepos()
+                     .subscribe((repos) => this.repos = repos);
   }
 
 }
