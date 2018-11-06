@@ -1,6 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { accessToken } from '../../../../authentication';
 import { RequesterService } from './../requester/requester.service';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { RequesterService } from './../requester/requester.service';
 })
 export class ReposService {
   private reposApiUrl: string = 'repositories';
-  private headers: HttpHeaders =  new HttpHeaders().set( 'Authorization', 'Bearer 9c734f3368be2866b09aadc5a05780630092f6ea');
+  private headers: HttpHeaders =  new HttpHeaders().set( 'Authorization', accessToken);
 
   constructor(private requesterService: RequesterService) {}
 

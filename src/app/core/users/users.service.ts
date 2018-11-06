@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { RequesterService } from '../requester/requester.service';
+import { accessToken } from './../../../../authentication';
+
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +12,7 @@ import { RequesterService } from '../requester/requester.service';
 export class UsersService {
   public users;
   private usersApiUrl: string = 'users';
-  private headers: HttpHeaders =  new HttpHeaders().set( 'Authorization', 'Bearer 9c734f3368be2866b09aadc5a05780630092f6ea');
+  private headers: HttpHeaders =  new HttpHeaders().set( 'Authorization', accessToken);
 
   constructor(private requester: RequesterService) { }
 
