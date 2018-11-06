@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IPublicUser } from '../models/public-user.model';
 import { UsersService } from './../core/users/users.service';
 
 @Component({
@@ -7,14 +8,14 @@ import { UsersService } from './../core/users/users.service';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  public users;
+  public users: IPublicUser;
   public userDetails;
 
   constructor(private usersService: UsersService) { }
 
   public ngOnInit(): void {
     this.usersService.getAllUsers()
-                     .subscribe((users) => {
+                     .subscribe((users: IPublicUser) => {
                        this.users = users;
                       });
   }
