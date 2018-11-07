@@ -1,0 +1,22 @@
+img {
+  border-radius: 10%;
+  height: 250px;
+  width: 250px;
+}
+
+div.contacts {
+  text-align: center;
+}
+
+div.bio {
+  text-align: justify;
+}
+
+p.not-available {
+  text-align: center;
+  font-style: italic;
+}
+
+a.btn.btn-primary {
+  color: white;
+}

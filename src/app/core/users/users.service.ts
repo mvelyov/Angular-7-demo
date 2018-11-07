@@ -10,19 +10,20 @@ import { accessToken } from './../../../../authentication';
   providedIn: 'root',
 })
 export class UsersService {
-  public users: IPublicUser;
+  public users: IPublicUser[];
+  public selectedUsername: string;
+
   private usersApiUrl: string = 'users';
   private headers: HttpHeaders =  new HttpHeaders().set( 'Authorization', accessToken);
-
   constructor(private requester: RequesterService) { }
 
-  public getAllUsers(): Observable<IPublicUser> {
+  public getAllUsers(): Observable<IPublicUser[]> {
     if (this.users) {
       return of(this.users);
     }
     return this.requester.get(this.usersApiUrl, this.headers)
                          .pipe(
-                          tap((data: IPublicUser) => {
+                          tap((data: IPublicUser[]) => {
                             this.users = data;
                             console.log('get data from github');
                           }));
