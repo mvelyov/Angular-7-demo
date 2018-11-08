@@ -10,6 +10,7 @@ import { IUser } from './../../models/user.model';
 })
 export class UserDetailsComponent implements OnInit {
   public selectedUser: IUser;
+  public userRepos;
 
   get username(): string {
     return this.usersService.selectedUsername;
@@ -21,6 +22,11 @@ export class UserDetailsComponent implements OnInit {
     this.usersService.getUserDetails(this.username)
                      .subscribe((user: IUser) => {
                        this.selectedUser = user;
+                     });
+
+    this.usersService.getUserRepos(this.username)
+                     .subscribe((repos) => {
+                       this.userRepos = repos;
                      });
   }
 

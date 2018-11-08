@@ -12,11 +12,38 @@ div.bio {
   text-align: justify;
 }
 
-p.not-available {
+p.website-not-available,
+p.email-not-available {
   text-align: center;
+  font-style: italic;
+}
+
+p.description-not-available,
+p.language-not-available {
   font-style: italic;
 }
 
 a.btn.btn-primary {
   color: white;
+}
+
+.card-title {
+  font-size: 1.75rem;
+}
+
+.card-text {
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.col-sm-3 {
+  font-size: 0.9rem;
+}
+
+.card.w-100 {
+  margin-top: 20px;
+}
+
+.card-title {
+  text-align: center;
 }

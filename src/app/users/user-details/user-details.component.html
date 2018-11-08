@@ -1,80 +1,123 @@
-<div *ngIf="selectedUser" class="card text-center">
-  <div class="card-header">
-    <ul class="nav card-header">
-      {{ selectedUser.name }}
-    </ul>
-  </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="row">
-          <div class="col-sm-12">
-            <img class="card-img-top" [src]="selectedUser.avatar_url" alt="Card image cap">
+<div class="container">
+  <div *ngIf="selectedUser" class="card text-center">
+    <div class="card-header">
+      <ul class="nav card-header">
+        {{ selectedUser.name }}
+      </ul>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="row">
+            <div class="col-sm-12">
+              <img class="card-img-top" [src]="selectedUser.avatar_url" alt="Card image cap">
+            </div>
+          </div>
+          <br>
+          <div *ngIf="selectedUser.blog" class="row contacts">
+            <div class="col-sm-12">
+              <a target="_blank" href="{{ selectedUser.blog }}">{{ selectedUser.blog }}</a>
+            </div>
+          </div>
+          <div *ngIf="!selectedUser.blog" class="row contacts">
+            <div class="col-sm-12">
+              <p class="website-not-available">
+                website is not available
+              </p>
+            </div>
+          </div>
+          <br>
+          <div *ngIf="selectedUser.blog" class="row contacts">
+            <div class="col-sm-12">
+              <a href="mailto:{{ selectedUser.email }}?subject=Hello {{ selectedUser.name }}">Send an
+                email to {{ selectedUser.name }}</a>
+            </div>
+          </div>
+          <div *ngIf="!selectedUser.blog" class="row contacts">
+            <div class="col-sm-12">
+              <p class="email-not-available">
+                email is not available
+              </p>
+            </div>
           </div>
         </div>
-        <br>
-        <div *ngIf="selectedUser.blog" class="row contacts">
-          <div class="col-sm-12">
-            <a target="_blank" href="{{ selectedUser.blog }}">{{ selectedUser.blog }}</a>
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="col-sm-3">
+              Followers <span class="badge badge-primary"> {{ selectedUser.followers }}</span>
+            </div>
+            <div class="col-sm-3">
+              Following <span class="badge badge-primary"> {{ selectedUser.following }}</span>
+            </div>
+            <div class="col-sm-3">
+              Repositories <span class="badge badge-primary"> {{ selectedUser.public_repos }}</span>
+            </div>
+            <div class="col-sm-3">
+              Stars <span class="badge badge-primary"> {{ selectedUser.public_gists }}</span>
+            </div>
           </div>
-        </div>
-        <div *ngIf="!selectedUser.blog" class="row contacts">
-          <div class="col-sm-12">
-            <p class="not-available">
-              website is not available
-            </p>
-          </div>
-        </div>
-        <br>
-        <div *ngIf="selectedUser.blog" class="row contacts">
-          <div class="col-sm-12">
-            <a href="mailto:{{ selectedUser.email }}?subject=Hello {{ selectedUser.name }}">Send an
-              email to {{ selectedUser.name }}</a>
-          </div>
-        </div>
-        <div *ngIf="!selectedUser.blog" class="row contacts">
-          <div class="col-sm-12">
-            <p class="not-available">
-              email is not available
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-8">
-        <div class="row">
-          <div class="col-sm-3">
-            Followers <span class="badge badge-primary"> {{ selectedUser.followers }}</span>
-          </div>
-          <div class="col-sm-3">
-            Following <span class="badge badge-primary"> {{ selectedUser.following }}</span>
-          </div>
-          <div class="col-sm-3">
-            Repositories <span class="badge badge-primary"> {{ selectedUser.public_repos }}</span>
-          </div>
-          <div class="col-sm-3">
-            Stars <span class="badge badge-primary"> {{ selectedUser.public_gists }}</span>
-          </div>
-        </div>
-        <br>
-        <br>
-        <div class="row bio">
-          <div class="col-sm-12">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium iure optio animi vel quasi totam
-            recusandae beatae nulla quae maiores similique deleniti voluptate voluptates nesciunt quaerat, dignissimos
-            quos itaque repellat!
+          <br>
+          <br>
+          <div class="row bio">
+            <div class="col-sm-12">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium iure optio animi vel quasi totam
+              recusandae beatae nulla quae maiores similique deleniti voluptate voluptates nesciunt quaerat,
+              dignissimos
+              quos itaque repellat!
 
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo culpa unde corrupti minus aspernatur
-            repudiandae cum voluptatum excepturi, doloremque voluptate maiores asperiores adipisci esse, eius earum non
-            minima aliquam? Optio!
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo culpa unde corrupti minus aspernatur
+              repudiandae cum voluptatum excepturi, doloremque voluptate maiores asperiores adipisci esse, eius earum
+              non
+              minima aliquam? Optio!
 
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, consequatur ea? Aperiam omnis labore
-            cupiditate, dolore fuga itaque, reprehenderit quod fugit unde doloremque voluptatem error odio expedita
-            iste pariatur quos.
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, consequatur ea? Aperiam omnis labore
+              cupiditate, dolore fuga itaque, reprehenderit quod fugit unde doloremque voluptatem error odio expedita
+              iste pariatur quos.
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div *ngFor="let repo of userRepos| paginate: {itemsPerPage: 3, currentPage: p }" class="card w-100">
+        <div class="row">
+          <div class="col-sm-4">
+            <h5 class="card-title"> {{ repo.name }}</h5>
+          </div>
+          <div class="col-sm-2">
+            Stars <span class="badge badge-primary"> {{ repo.stargazers_count }}</span>
+          </div>
+          <div class="col-sm-2">
+            Watchers <span class="badge badge-primary"> {{ repo.watchers_count }}</span>
+          </div>
+          <div class="col-sm-2">
+            Open Issues <span class="badge badge-primary"> {{ repo.open_issues }}</span>
+          </div>
+          <div class="col-sm-2">
+            Forks <span class="badge badge-primary"> {{ repo.forks }}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card-body">
+              <p *ngIf="repo.description" class="card-text"> {{ repo.description }}</p>
+              <p *ngIf="!repo.description" class="card-text description-not-available"> description is not available</p>
+              <p *ngIf="repo.language" class="card-language fa fa-circle"> {{ repo.language }}</p>
+              <p *ngIf="!repo.language" class="card-language language-not-available"> language is not available </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <a class="btn btn-primary" (click)="onBackToUser()">Back to Users</a>
+  <br>
+  <div class="row">
+    <div class="col-sm-8 offset-sm-4">
+      <pagination-controls (pageChange)="p = $event" responsive="true" autoHide="true"></pagination-controls>
+    </div>
+  </div>
 </div>
-<br>
-<a class="btn btn-primary" (click)="onBackToUser()">Back to Users</a>

@@ -33,4 +33,9 @@ export class UsersService {
     const userDetailsApiUrl: string = `${this.usersApiUrl}/${username}`;
     return this.requester.get(userDetailsApiUrl, this.headers);
   }
+
+  public getUserRepos(username: string): Observable<{}> {
+    const userReposApiUrl: string = `${this.usersApiUrl}/${username}/repos`;
+    return this.requester.get(userReposApiUrl, this.headers);
+  }
 }
