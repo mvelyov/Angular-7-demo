@@ -6,7 +6,7 @@
       <div class="card-body">
         <img class="card-img-top" [src]="user.avatar_url" alt="avatar">
         <h5 class="card-title"> User: {{ user.login }}</h5>
-        <a class="btn btn-primary" [routerLink]="['details']" (click)="onSelectUser(user.login)">View Details</a>
+        <a class="btn btn-primary" [routerLink]="[user.login, 'details']" (click)="onSelectUser(user.login)">View Details</a>
       </div>
     </div>
   </div>

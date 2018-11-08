@@ -8,7 +8,7 @@ export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'users', children: [
     { path: '', component: UsersComponent },
-    { path: 'details', component: UserDetailsComponent },
+    { path: ':username/details', component: UserDetailsComponent },
   ]},
   { path: 'repositories', component: ReposComponent },
 ];
