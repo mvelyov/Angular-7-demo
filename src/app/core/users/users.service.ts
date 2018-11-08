@@ -25,7 +25,7 @@ export class UsersService {
                          .pipe(
                           tap((data: IPublicUser[]) => {
                             this.users = data;
-                            console.log('get data from github');
+                            console.log('get users data from github');
                           }));
   }
 
