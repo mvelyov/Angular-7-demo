@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IFullUserDetails } from '../../models/users/users-full-details.model';
+import { IUserFullDetails } from '../../models/users/users-full-details.model';
 import { UsersService } from './../../core/users/users.service';
+import { IReposFulllDetails } from './../../models/repos/repos-full-details';
 
 @Component({
   selector: 'app-user-details',
@@ -9,10 +10,9 @@ import { UsersService } from './../../core/users/users.service';
   styleUrls: ['./user-details.component.css'],
 })
 export class UserDetailsComponent implements OnInit {
-  public selectedUser: IFullUserDetails;
-  public userRepos;
-  public allUserRepos;
-  public languages;
+  public selectedUser: IUserFullDetails;
+  public userRepos: IReposFulllDetails[];
+  public allUserRepos: IReposFulllDetails[];
   public filterByLanguage: string = '';
 
   get username(): string {
@@ -23,12 +23,12 @@ export class UserDetailsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.usersService.getUserDetails(this.username)
-                     .subscribe((user: IFullUserDetails) => {
+                     .subscribe((user: IUserFullDetails) => {
                        this.selectedUser = user;
                      });
 
     this.usersService.getUserRepos(this.username)
-                     .subscribe((repos) => {
+                     .subscribe((repos: IReposFulllDetails[]) => {
                        this.userRepos = repos;
                        this.allUserRepos = repos;
                      });

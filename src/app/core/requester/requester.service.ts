@@ -10,7 +10,7 @@ export class RequesterService {
 
   constructor(private http: HttpClient) {}
 
-  public get(resource: string, headers: HttpHeaders): Observable<{}> {
+  public get(resource: string, headers: HttpHeaders): Observable<any> {
     const apiUrl = this.requestDomain + resource;
     return this.http.get(apiUrl, {headers});
   }

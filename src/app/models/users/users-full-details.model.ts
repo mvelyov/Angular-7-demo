@@ -1,6 +1,6 @@
 import { IPublicUserDetails } from './users-public-details.model';
 
-export interface IFullUserDetails extends IPublicUserDetails {
+export interface IUserFullDetails extends IPublicUserDetails {
   name: string;
   company: string;
   blog: string;

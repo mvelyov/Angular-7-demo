@@ -5,6 +5,8 @@ import { tap } from 'rxjs/operators';
 import { IPublicUserDetails } from '../../models/users/users-public-details.model';
 import { RequesterService } from '../requester/requester.service';
 import { accessToken } from './../../../../authentication';
+import { IReposFulllDetails } from './../../models/repos/repos-full-details';
+import { IUserFullDetails } from './../../models/users/users-full-details.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +14,9 @@ import { accessToken } from './../../../../authentication';
 export class UsersService {
   public users: IPublicUserDetails[];
   public selectedUsername: string;
-
   private usersApiUrl: string = 'users';
   private headers: HttpHeaders =  new HttpHeaders().set( 'Authorization', accessToken);
+
   constructor(private requester: RequesterService) { }
 
   public getAllUsers(): Observable<IPublicUserDetails[]> {
@@ -29,12 +31,12 @@ export class UsersService {
                           }));
   }
 
-  public getUserDetails(username: string): Observable<{}> {
+  public getUserDetails(username: string): Observable<IUserFullDetails> {
     const userDetailsApiUrl: string = `${this.usersApiUrl}/${username}`;
     return this.requester.get(userDetailsApiUrl, this.headers);
   }
 
-  public getUserRepos(username: string): Observable<{}> {
+  public getUserRepos(username: string): Observable<IReposFulllDetails[]> {
     const userReposApiUrl: string = `${this.usersApiUrl}/${username}/repos`;
     return this.requester.get(userReposApiUrl, this.headers);
   }
