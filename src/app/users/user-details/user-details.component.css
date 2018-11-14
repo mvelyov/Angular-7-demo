@@ -47,3 +47,8 @@ a.btn.btn-primary {
 .card-title {
   text-align: center;
 }
+
+::placeholder {
+  opacity: 0.5;
+  font-style: italic;
+}

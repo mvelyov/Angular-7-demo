@@ -9,3 +9,8 @@ a.btn.btn-primary {
 pagination-controls {
   background-color: red;
 }
+
+::placeholder {
+  opacity: 0.5;
+  font-style: italic;
+}
