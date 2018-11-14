@@ -1,12 +1,21 @@
 <div class="container">
-  <br>
+  <div class="row">
+    <div class="col-sm-2 offset-sm-10">
+  <input type="text" class="form-control" placeholder="Find in users" (keyup)="onFindUser($event.target.value)">
+    </div>
+  </div>
   <div class="row">
     <div *ngFor="let user of users | paginate: {itemsPerPage: 6, currentPage: p }" class="card border-light mb-3 col-sm-4">
       <div class="card-body">
         <img class="card-img-top" [src]="user.avatar_url" alt="avatar">
-        <h5 class="card-title"> User: {{ user.login }}</h5>
+        <h5 class="card-title"> {{ user.login }}</h5>
         <a class="btn btn-primary" [routerLink]="[user.login, 'details']" (click)="onSelectUser(user.login)">View Details</a>
       </div>
+    </div>
+  </div>
+  <div *ngIf="users && users.length === 0" class="row">
+    <div class="col-sm-12">
+      <h2>No users found!</h2>
     </div>
   </div>
   <div class="row">
