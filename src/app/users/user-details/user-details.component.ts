@@ -38,20 +38,16 @@ export class UserDetailsComponent implements OnInit {
     this.router.navigate(['users']);
   }
 
-  public onFilterByLanguage(): void {
-    const filteredUserRepos = this.allUserRepos.filter((repo) => {
-      if (repo.language) {
-      return repo.language.toLowerCase() === this.filterByLanguage;
-      }
-    });
-    this.userRepos = filteredUserRepos;
-  }
-
-  public onResetFilter(): void {
-    this.filterByLanguage = '';
-    this.usersService.getUserRepos(this.username)
-    .subscribe((repos) => {
-      this.userRepos = repos;
-    });
+  public onFilterByLanguage(language: string): void {
+    if (language) {
+      const filteredUserRepos = this.allUserRepos.filter((repo) => {
+        if (repo.language && (repo.language.toLowerCase()).includes(language)) {
+          return repo;
+        }
+      });
+      this.userRepos = filteredUserRepos;
+    } else {
+      this.userRepos = this.allUserRepos;
+    }
   }
 }
