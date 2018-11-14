@@ -1,4 +1,4 @@
-export interface IPublicUser {
+export interface IPublicUserDetails {
   login: string;
   id: number;
   node_id: string;

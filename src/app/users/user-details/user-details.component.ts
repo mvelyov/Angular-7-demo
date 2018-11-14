@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IFullUserDetails } from '../../models/users/users-full-details.model';
 import { UsersService } from './../../core/users/users.service';
-import { IUser } from './../../models/user.model';
 
 @Component({
   selector: 'app-user-details',
@@ -9,7 +9,7 @@ import { IUser } from './../../models/user.model';
   styleUrls: ['./user-details.component.css'],
 })
 export class UserDetailsComponent implements OnInit {
-  public selectedUser: IUser;
+  public selectedUser: IFullUserDetails;
   public userRepos;
   public allUserRepos;
   public languages;
@@ -23,7 +23,7 @@ export class UserDetailsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.usersService.getUserDetails(this.username)
-                     .subscribe((user: IUser) => {
+                     .subscribe((user: IFullUserDetails) => {
                        this.selectedUser = user;
                      });
 
@@ -41,7 +41,7 @@ export class UserDetailsComponent implements OnInit {
   public onFilterByLanguage(language: string): void {
     if (language) {
       const filteredUserRepos = this.allUserRepos.filter((repo) => {
-        if (repo.language && (repo.language.toLowerCase()).includes(language)) {
+        if (repo.language && (repo.language.toLowerCase()).includes(language.toLowerCase())) {
           return repo;
         }
       });

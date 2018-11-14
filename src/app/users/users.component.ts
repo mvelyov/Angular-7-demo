@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IPublicUser } from '../models/public-user.model';
+import { IPublicUserDetails } from '../models/users/users-public-details.model';
 import { UsersService } from './../core/users/users.service';
 
 @Component({
@@ -8,15 +8,15 @@ import { UsersService } from './../core/users/users.service';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  public users: IPublicUser[];
-  public allUsers: IPublicUser[];
+  public users: IPublicUserDetails[];
+  public allUsers: IPublicUserDetails[];
   public userDetails;
 
   constructor(private usersService: UsersService) { }
 
   public ngOnInit(): void {
     this.usersService.getAllUsers()
-                     .subscribe((users: IPublicUser[]) => {
+                     .subscribe((users: IPublicUserDetails[]) => {
                        this.users = users;
                        this.allUsers = users;
                       });

@@ -1,6 +1,6 @@
-import { IPublicUser } from './public-user.model';
+import { IPublicUserDetails } from './users-public-details.model';
 
-export interface IUser extends IPublicUser {
+export interface IFullUserDetails extends IPublicUserDetails {
   name: string;
   company: string;
   blog: string;

@@ -2,7 +2,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { IPublicUser } from '../../models/public-user.model';
+import { IPublicUserDetails } from '../../models/users/users-public-details.model';
 import { RequesterService } from '../requester/requester.service';
 import { accessToken } from './../../../../authentication';
 
@@ -10,20 +10,20 @@ import { accessToken } from './../../../../authentication';
   providedIn: 'root',
 })
 export class UsersService {
-  public users: IPublicUser[];
+  public users: IPublicUserDetails[];
   public selectedUsername: string;
 
   private usersApiUrl: string = 'users';
   private headers: HttpHeaders =  new HttpHeaders().set( 'Authorization', accessToken);
   constructor(private requester: RequesterService) { }
 
-  public getAllUsers(): Observable<IPublicUser[]> {
+  public getAllUsers(): Observable<IPublicUserDetails[]> {
     if (this.users) {
       return of(this.users);
     }
     return this.requester.get(this.usersApiUrl, this.headers)
                          .pipe(
-                          tap((data: IPublicUser[]) => {
+                          tap((data: IPublicUserDetails[]) => {
                             this.users = data;
                             console.log('get users data from github');
                           }));
