@@ -34,3 +34,9 @@ a.btn.btn-primary {
   text-align: center;
 }
 
+cdk-virtual-scroll-viewport {
+  height: 900px;
+}
+
+
+

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReposService } from './../core/repos/repos.service';
 
@@ -14,9 +15,12 @@ export class ReposComponent implements OnInit {
 
   public ngOnInit(): void {
     this.reposService.getAllRepos()
-                     .subscribe((repos) => this.repos = repos);
+                     .subscribe((repos) => {
+                       this.repos = repos;
+                     });
   }
-  public onScroll(): void {
-    console.log('scroll down');
+
+  public onFilterRepos(form: NgForm): void {
+    console.log(form.value);
   }
 }

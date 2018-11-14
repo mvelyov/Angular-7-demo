@@ -1,5 +1,7 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AppComponent } from './app.component';
@@ -24,6 +26,8 @@ import { UsersComponent } from './users/users.component';
     AppRoutingModule,
     HttpClientModule,
     NgxPaginationModule,
+    ScrollingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [

@@ -11,6 +11,9 @@ import { IUser } from './../../models/user.model';
 export class UserDetailsComponent implements OnInit {
   public selectedUser: IUser;
   public userRepos;
+  public allUserRepos;
+  public languages;
+  public filterByLanguage: string = '';
 
   get username(): string {
     return this.usersService.selectedUsername;
@@ -27,10 +30,28 @@ export class UserDetailsComponent implements OnInit {
     this.usersService.getUserRepos(this.username)
                      .subscribe((repos) => {
                        this.userRepos = repos;
+                       this.allUserRepos = repos;
                      });
   }
 
-  public onBackToUser(): void {
+  public onBackToUsers(): void {
     this.router.navigate(['users']);
+  }
+
+  public onFilterByLanguage(): void {
+    const filteredUserRepos = this.allUserRepos.filter((repo) => {
+      if (repo.language) {
+      return repo.language.toLowerCase() === this.filterByLanguage;
+      }
+    });
+    this.userRepos = filteredUserRepos;
+  }
+
+  public onResetFilter(): void {
+    this.filterByLanguage = '';
+    this.usersService.getUserRepos(this.username)
+    .subscribe((repos) => {
+      this.userRepos = repos;
+    });
   }
 }

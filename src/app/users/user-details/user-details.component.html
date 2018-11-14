@@ -79,9 +79,23 @@
       </div>
     </div>
   </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-10">
+      <input type="text" class="form-control" placeholder="Filter by language" [(ngModel)]="filterByLanguage" required>
+    </div>
+    <div class="col-sm-1">
+      <button [disabled]="!filterByLanguage" (click)="onFilterByLanguage()" class="btn btn-primary">Filter</button>
+    </div>
+
+    <div class="col-sm-1">
+      <button [disabled]="!filterByLanguage" (click)="onResetFilter()" class="btn btn-primary">Reset</button>
+    </div>
+  </div>
+  <br>
   <div class="row">
     <div class="col-sm-12">
-      <div *ngFor="let repo of userRepos| paginate: {itemsPerPage: 3, currentPage: p }" class="card w-100">
+      <div *ngFor="let repo of userRepos | paginate: {itemsPerPage: 3, currentPage: p }" class="card w-100">
         <div class="row">
           <div class="col-sm-4">
             <h5 class="card-title"> {{ repo.name }}</h5>
@@ -112,8 +126,13 @@
       </div>
     </div>
   </div>
+  <div *ngIf="userRepos.length === 0" class="row">
+    <div class="col-sm-12">
+      <h2>No repos available!</h2>
+    </div>
+  </div>
   <br>
-  <a class="btn btn-primary" (click)="onBackToUser()">Back to Users</a>
+  <a class="btn btn-primary" (click)="onBackToUsers()">Back to Users</a>
   <br>
   <div class="row">
     <div class="col-sm-8 offset-sm-4">

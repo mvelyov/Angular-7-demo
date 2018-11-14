@@ -1,30 +1,30 @@
-<div *ngFor="let repo of repos | paginate: {itemsPerPage: 5, currentPage: p }" class="row">
-  <div class="col-sm-12">
-    <div class="card w-100">
-      <div class="row">
-        <div class="col-sm-4">
-          <h5 class="card-title"> {{ repo.name }}</h5>
-        </div>
-        <div class="col-sm-2 offset-sm-6">
-          Owner <span class="badge badge-primary"> {{ repo.owner.login }}</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="card-body">
-            <p *ngIf="repo.description" class="card-text"> {{ repo.description }}</p>
-            <p *ngIf="!repo.description" class="card-text description-not-available"> description is not available</p>
-            <p *ngIf="repo.language" class="card-language fa fa-circle"> {{ repo.language }}</p>
-            <p *ngIf="!repo.language" class="card-language language-not-available"> language is not available </p>
+<cdk-virtual-scroll-viewport itemSize="50">
+  <ng-container *cdkVirtualFor="let repo of repos">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card w-100">
+          <div class="row">
+            <div class="col-sm-4">
+              <h5 class="card-title"> {{ repo.name }}</h5>
+            </div>
+            <div class="col-sm-2 offset-sm-6">
+              Owner <span class="badge badge-primary"> {{ repo.owner.login }}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-body">
+                <p *ngIf="repo.description" class="card-text"> {{ repo.description }}</p>
+                <p *ngIf="!repo.description" class="card-text description-not-available"> description is not
+                  available</p>
+                <p *ngIf="repo.language" class="card-language fa fa-circle"> {{ repo.language }}</p>
+                <p *ngIf="!repo.language" class="card-language language-not-available"> language is not available
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<br>
-<div class="row">
-  <div class="col-sm-8 offset-sm-4">
-    <pagination-controls (pageChange)="p = $event" responsive="true" autoHide="true"></pagination-controls>
-  </div>
-</div>
+  </ng-container>
+</cdk-virtual-scroll-viewport>
