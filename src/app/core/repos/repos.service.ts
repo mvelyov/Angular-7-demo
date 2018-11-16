@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { accessToken } from '../../../../authentication';
-import { IReposPublicDetails } from './../../models/repos/repos-public-details';
+import { IReposPublicDetails } from '../models/repos/repos-public-details';
 import { RequesterService } from './../requester/requester.service';
 
 @Injectable({

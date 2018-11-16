@@ -81,55 +81,70 @@
   </div>
   <br>
   <div class="row">
-    <div class="col-sm-2 offset-sm-10">
-      <input type="text" class="form-control" placeholder="Find by language" (keyup)="onFilterByLanguage($event.target.value)">
-    </div>
-  </div>
-  <br>
-  <div class="row">
     <div class="col-sm-12">
-      <div *ngFor="let repo of userRepos | paginate: {itemsPerPage: 3, currentPage: p }" class="card w-100">
+      <form (ngSubmit)="onFilter(form)" #form="ngForm">
         <div class="row">
-          <div class="col-sm-4">
-            <h5 class="card-title"> {{ repo.name }}</h5>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" placeholder="Name" name="name" [(ngModel)]="filterByName">
           </div>
-          <div class="col-sm-2">
-            Stars <span class="badge badge-primary"> {{ repo.stargazers_count }}</span>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" placeholder="Language" name="language" [(ngModel)]="filterByLanguage">
           </div>
-          <div class="col-sm-2">
-            Watchers <span class="badge badge-primary"> {{ repo.watchers_count }}</span>
+          <div class="col-sm-1">
+            <button class="btn btn-primary" [disabled]="!filterByName || !filterByLanguage">Filter</button>
           </div>
-          <div class="col-sm-2">
-            Open Issues <span class="badge badge-primary"> {{ repo.open_issues }}</span>
-          </div>
-          <div class="col-sm-2">
-            Forks <span class="badge badge-primary"> {{ repo.forks }}</span>
+          <div class="col-sm-1">
+            <button class="btn btn-primary" [disabled]="!filterByName || !filterByLanguage" (click)="onResetFilter()">Reset</button>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="card-body">
-              <p *ngIf="repo.description" class="card-text"> {{ repo.description }}</p>
-              <p *ngIf="!repo.description" class="card-text description-not-available"> description is not available</p>
-              <p *ngIf="repo.language" class="card-language fa fa-circle"> {{ repo.language }}</p>
-              <p *ngIf="!repo.language" class="card-language language-not-available"> language is not available </p>
-            </div>
+    </form>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-12">
+    <div *ngFor="let repo of userRepos | paginate: {itemsPerPage: 3, currentPage: p }" class="card w-100">
+      <div class="row">
+        <div class="col-sm-4">
+          <h5 class="card-title"> {{ repo.name }}</h5>
+        </div>
+        <div class="col-sm-2">
+          Stars <span class="badge badge-primary"> {{ repo.stargazers_count }}</span>
+        </div>
+        <div class="col-sm-2">
+          Watchers <span class="badge badge-primary"> {{ repo.watchers_count }}</span>
+        </div>
+        <div class="col-sm-2">
+          Open Issues <span class="badge badge-primary"> {{ repo.open_issues }}</span>
+        </div>
+        <div class="col-sm-2">
+          Forks <span class="badge badge-primary"> {{ repo.forks }}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card-body">
+            <p *ngIf="repo.description" class="card-text"> {{ repo.description }}</p>
+            <p *ngIf="!repo.description" class="card-text description-not-available"> description is not available</p>
+            <p *ngIf="repo.language" class="card-language fa fa-circle"> {{ repo.language }}</p>
+            <p *ngIf="!repo.language" class="card-language language-not-available"> language is not available </p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div *ngIf="userRepos && userRepos.length === 0" class="row">
-    <div class="col-sm-12">
-      <h2>No repos found!</h2>
-    </div>
+</div>
+<div *ngIf="userRepos && userRepos.length === 0" class="row">
+  <div class="col-sm-12">
+    <h2>No repos found!</h2>
   </div>
-  <br>
-  <a class="btn btn-primary" (click)="onBackToUsers()">Back to Users</a>
-  <br>
-  <div class="row">
-    <div class="col-sm-8 offset-sm-4">
-      <pagination-controls (pageChange)="p = $event" responsive="true" autoHide="true"></pagination-controls>
-    </div>
+</div>
+<br>
+<a class="btn btn-primary" (click)="onBackToUsers()">Back to Users</a>
+<br>
+<div class="row">
+  <div class="col-sm-8 offset-sm-4">
+    <pagination-controls (pageChange)="p = $event" responsive="true" autoHide="true"></pagination-controls>
   </div>
+</div>
 </div>

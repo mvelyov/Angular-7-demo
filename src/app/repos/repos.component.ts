@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { IReposPublicDetails } from '../models/repos/repos-public-details';
+import { IReposPublicDetails } from '../core/models/repos/repos-public-details';
 import { ReposService } from './../core/repos/repos.service';
 
 @Component({

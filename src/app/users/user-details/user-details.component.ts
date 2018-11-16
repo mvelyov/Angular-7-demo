@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IUserFullDetails } from '../../models/users/users-full-details.model';
+import { IReposFulllDetails } from './../../core/models/repos/repos-full-details';
+import { IUserFullDetails } from './../../core/models/users/users-full-details.model';
 import { UsersService } from './../../core/users/users.service';
-import { IReposFulllDetails } from './../../models/repos/repos-full-details';
+
 
 @Component({
   selector: 'app-user-details',
@@ -13,7 +15,8 @@ export class UserDetailsComponent implements OnInit {
   public selectedUser: IUserFullDetails;
   public userRepos: IReposFulllDetails[];
   public allUserRepos: IReposFulllDetails[];
-  public filterByLanguage: string = '';
+  public filterByName: string;
+  public filterByLanguage: string;
 
   get username(): string {
     return this.usersService.selectedUsername;
@@ -38,16 +41,27 @@ export class UserDetailsComponent implements OnInit {
     this.router.navigate(['users']);
   }
 
-  public onFilterByLanguage(language: string): void {
-    if (language) {
-      const filteredUserRepos = this.allUserRepos.filter((repo) => {
-        if (repo.language && (repo.language.toLowerCase()).includes(language.toLowerCase())) {
-          return repo;
-        }
-      });
-      this.userRepos = filteredUserRepos;
-    } else {
-      this.userRepos = this.allUserRepos;
-    }
+  public onFilter(form: NgForm): void {
+    const filterName = form.value.name;
+    const filterLanguage = form.value.language;
+
+    const filteredRepos = this.allUserRepos
+                            .filter((repo) => {
+                              if (((repo.name).toLowerCase()).includes(filterName.toLowerCase())) {
+                                  return repo;
+                              }
+                              })
+                              .filter((repo) => {
+                              if (repo.language && ((repo.language).toLowerCase()).includes(filterLanguage.toLowerCase())) {
+                                  return repo;
+                            }
+                            });
+    this.userRepos = filteredRepos;
   }
-}
+
+  public onResetFilter(): void {
+    this.filterByName = '';
+    this.filterByLanguage = '';
+    this.userRepos = this.allUserRepos;
+  }
+ }
