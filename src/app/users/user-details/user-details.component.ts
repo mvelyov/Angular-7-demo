@@ -3,8 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IReposFulllDetails } from './../../core/models/repos/repos-full-details';
 import { IUserFullDetails } from './../../core/models/users/users-full-details.model';
-import { UsersService } from './../../core/users/users.service';
-
+import { UsersService } from './../../core/services/users/users.service';
 
 @Component({
   selector: 'app-user-details',

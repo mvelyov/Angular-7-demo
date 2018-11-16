@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IReposPublicDetails } from '../core/models/repos/repos-public-details';
-import { ReposService } from './../core/repos/repos.service';
+import { ReposService } from './../core/services/repos/repos.service';
 
 @Component({
   selector: 'app-repos',

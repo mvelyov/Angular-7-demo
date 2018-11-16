@@ -2,12 +2,11 @@ import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { IReposFulllDetails } from '../models/repos/repos-full-details';
-import { IUserFullDetails } from '../models/users/users-full-details.model';
-import { IPublicUserDetails } from '../models/users/users-public-details.model';
+import { IReposFulllDetails } from '../../models/repos/repos-full-details';
+import { IUserFullDetails } from '../../models/users/users-full-details.model';
+import { IPublicUserDetails } from '../../models/users/users-public-details.model';
 import { RequesterService } from '../requester/requester.service';
-import { accessToken } from './../../../../authentication';
-
+import { accessToken } from './../../../../../authentication';
 
 @Injectable({
   providedIn: 'root',
