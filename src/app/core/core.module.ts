@@ -3,10 +3,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,
@@ -15,6 +17,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   ],
   exports: [
     NavbarComponent,
+    NotFoundComponent,
   ],
 })
 export class CoreModule { }

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { ReposModule } from './repos/repos.module';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from './users';
 
 @NgModule({
   declarations: [
